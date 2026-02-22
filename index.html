@@ -51,7 +51,7 @@
 
     <div class="tabs tabs-lift">
       <input id="all-tab" type="radio" name="my_tabs_3" class="tab" aria-label="All" checked="checked" />
-      <div id="accordion" class="accordion tab-content bg-base-100 border-base-300 p-6">
+      <div id="accordion-all" class="accordion tab-content bg-base-100 border-base-300 p-6">
         <details class="interviewed collapse bg-base-100 border border-base-300" name="my-accordion-det-1">
           <summary class="collapse-title font-semibold">
             <h3 class="font-bold">Mobile First Corp.</h3>
@@ -61,7 +61,7 @@
             <p class="text-base-content/30 my-6">Remote · Full Time · $120,000 - $160,000</p>
             <p>Build Cross-Platform mobile apps with React Native. Over a million subscriber all over the world</p>
             <div class="mt-3">
-              <button class="uppercase btn btn-outline btn-success mr-[8px]">Interview</button>
+              <button disabled class="uppercase btn btn-outline btn-success mr-[8px]">Interview</button>
               <button class="uppercase btn btn-outline btn-error">Reject</button>
             </div>
 
@@ -77,7 +77,7 @@
             <p>Robust frontend application with Vue, can be glued with multiple type of Backend and system</p>
             <div class="mt-3">
               <button class="uppercase btn btn-outline btn-success mr-[8px]">Interview</button>
-              <button class="uppercase btn btn-outline btn-error">Reject</button>
+              <button disabled class="uppercase btn btn-outline btn-error">Reject</button>
             </div>
           </div>
         </details>
@@ -99,10 +99,20 @@
       </div>
 
       <input id="interviewed-tab" type="radio" name="my_tabs_3" class="tab" aria-label="Interviewed" />
-      <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+
+        <div id="accordion-" class="accordion tab-content bg-base-100 border-base-300 p-6">
+        </div>
+
+      </div>
 
       <input id="rejected-tab" type="radio" name="my_tabs_3" class="tab" aria-label="Rejected" />
-      <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+
+        <div id="accordion" class="accordion tab-content bg-base-100 border-base-300 p-6">
+        </div>
+
+      </div>
     </div>
   </div>
 
