@@ -61,10 +61,20 @@ let jobs = [
         salary: "60,000 - 90,000", 
         description: "Vue, Vanilla and React, Router"
     },
+    
+    {
+        id: 4, 
+        status: "all", 
+        title: "Frontend Engineer I", 
+        company: "Future Tech.", 
+        type: "Full Time", 
+        salary: "160,000 - 190,000", 
+        description: "Vue, Vanilla and React, Router"
+    },
 ];
 
-
-
+common(jobs, "all");
+setCount(jobs);
 
 function makePost (data) {
     return `
@@ -87,35 +97,47 @@ function makePost (data) {
 }
 
 document.getElementById("parent").addEventListener("click", function(e){
-    if (e.target.id === "all") {
-        common(jobs, e)
-        
-    }
-    if (e.target.id === "reject") {
-        common(jobs, e)
-        
-    }
-    if (e.target.id === "interview") {
-        common(jobs, e)
-        
-    }
+    common(jobs, e.target.id)
     e.stopPropagation;
 });
 
-function common (data, event) {
-    document.getElementById(`accordion-${event.target.id}`).innerHTML = "";
+function common (data, tabName) {
+    document.getElementById(`accordion-${tabName}`).innerHTML = "";
         for (const job of data) {
-            if (event.target.id === "all") {
+
+
+            if (tabName === "all") {
                 let post = makePost(job);
-                document.getElementById(`accordion-${event.target.id}`).insertAdjacentHTML("beforeend",post);
+                document.getElementById(`accordion-${tabName}`).insertAdjacentHTML("beforeend",post);
                 continue;
             }
-            if (job.status === event.target.id) {
+            if (job.status === tabName) {
                 let post = makePost(job);
-                document.getElementById(`accordion-${event.target.id}`).insertAdjacentHTML("beforeend",post); 
+                document.getElementById(`accordion-${tabName}`).insertAdjacentHTML("beforeend",post); 
             }
             
         }
+}
+
+function setCount (data) {
+    let reject = 0;
+    let interview = 0;
+
+    for (const job of data) {
+        if (job.status === "interview") {
+            interview++;
+    
+        }
+        if (job.status === "reject") {
+            reject++;
+        }
+    }
+    document.getElementById("card-interviewed-jobs").innerText = interview;
+    document.getElementById("card-rejected-jobs").innerText = reject;
+    document.getElementById("card-total-jobs").innerText = data.length;
+    document.getElementById("total-jobs").innerText = data.length;
+
+    
 }
 
 // function getCount() {
