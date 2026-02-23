@@ -59,8 +59,8 @@ function makePost(data, key) {
                 <p class="text-base-content/30 my-6">${data.type} · ${data.salary}</p>
                 <p>${data.description}</p>
                 <div class="mt-3">
-                    <button ${(data.status === "interview") ? "disabled" : ''} class="uppercase btn btn-outline btn-success mr-[8px]">Interview</button>
-                    <button ${(data.status === "reject") ? "disabled" : ''} class="uppercase btn btn-outline btn-error">Reject</button>
+                    <button data-id=${key} ${(data.status === "interview") ? "disabled" : ''} class="uppercase btn btn-outline btn-success mr-[8px]">Interview</button>
+                    <button data-id=${key} ${(data.status === "reject") ? "disabled" : ''} class="uppercase btn btn-outline btn-error">Reject</button>
                 </div>
               </div>
               <div class="col-span-1">
@@ -80,6 +80,7 @@ function makePost(data, key) {
 
 document.getElementById("parent").addEventListener("click", function (e) {
 
+    
     if (e.target.type === "radio") {
         let currentTab = e.target.id;
         common(jobs, e.target.id)
@@ -90,6 +91,23 @@ document.getElementById("parent").addEventListener("click", function (e) {
             return;
         }
         jobs.splice(e.target.dataset.id, 1)
+        let currentTab = document.getElementById("heading").innerText.toLowerCase();
+
+        common(jobs, currentTab);
+        setCount(jobs);
+        setHeader(currentTab);
+
+    }
+
+    if (e.target.tagName === "BUTTON") {
+        console.info(jobs);
+        if (e.target.classList.contains("btn-error")) {
+            jobs[e.target.dataset.id].status = "reject"
+        }
+        if (e.target.classList.contains("btn-success")) {
+            jobs[e.target.dataset.id].status = "interview"
+        }
+
         let currentTab = document.getElementById("heading").innerText.toLowerCase();
 
         common(jobs, currentTab);
