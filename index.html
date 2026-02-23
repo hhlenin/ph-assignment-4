@@ -49,8 +49,8 @@
       <p><span id="total-jobs">99</span> Jobs</p>
     </div>
 
-    <div class="tabs tabs-lift">
-      <input id="all-tab" type="radio" name="my_tabs_3" class="tab" aria-label="All" checked="checked" />
+    <div class="tabs tabs-lift" id="parent">
+      <input id="all" type="radio" name="my_tabs_3" class="tab" aria-label="All" checked="checked" />
       <div id="accordion-all" class="accordion tab-content bg-base-100 border-base-300 p-6">
         <details class="interviewed collapse bg-base-100 border border-base-300" name="my-accordion-det-1">
           <summary class="collapse-title font-semibold">
@@ -98,18 +98,18 @@
         </details>
       </div>
 
-      <input id="interviewed-tab" type="radio" name="my_tabs_3" class="tab" aria-label="Interviewed" />
-      <div class="tab-content bg-base-100 border-base-300 p-6">
+      <input id="interview" type="radio" name="my_tabs_3" class="tab" aria-label="Interviewed" />
+      <div id="accordion-interview" class="tab-content bg-base-100 border-base-300 p-6">
 
-        <div id="accordion-" class="accordion tab-content bg-base-100 border-base-300 p-6">
+        <div id="accordion-interview" class="accordion tab-content bg-base-100 border-base-300 p-6">
         </div>
 
       </div>
 
-      <input id="rejected-tab" type="radio" name="my_tabs_3" class="tab" aria-label="Rejected" />
-      <div class="tab-content bg-base-100 border-base-300 p-6">
+      <input id="reject" type="radio" name="my_tabs_3" class="tab" aria-label="Rejected" />
+      <div id="accordion-reject" class="tab-content bg-base-100 border-base-300 p-6">
 
-        <div id="accordion" class="accordion tab-content bg-base-100 border-base-300 p-6">
+        <div id="accordion-reject" class="accordion tab-content bg-base-100 border-base-300 p-6">
         </div>
 
       </div>
