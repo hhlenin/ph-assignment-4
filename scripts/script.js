@@ -1,37 +1,3 @@
-const accordion = document.getElementById('accordion-all');
-let totalJobs = accordion.children.length;
-document.getElementById("total-jobs").innerText = totalJobs;
-document.getElementById("card-total-jobs").innerText = totalJobs;
-
-// getCount();
-
-
-
-// accordion.addEventListener('click', function (e) {
-//     const children = this.children;
-//     for (const child of children) {
-//         if (child.classList.contains("interviewed")) {
-//             interviewJobs++;
-//         }
-//         if (child.classList.contains("rejected")) {
-//             rejectedJobs++;
-//         }
-
-//     }
-//     console.log(interviewJobs, rejectedJobs)
-
-// for(let i= 0; i< childs.length; i++) {
-//     console.log(childs[i])
-//     (childs[i].hasAttribute("open"))
-// }
-// if (e.target.tagName === "SUMMARY") {
-//     e.target.parentNode.classList.remove("border-base-300");
-//     e.target.parentNode.classList.add("border-white");
-//     e.stopPropagation();
-// }
-
-// });
-
 let jobs = [
     {
         id: 1, 
@@ -64,7 +30,7 @@ let jobs = [
     
     {
         id: 4, 
-        status: "all", 
+        status: "reject", 
         title: "Frontend Engineer I", 
         company: "Future Tech.", 
         type: "Full Time", 
@@ -75,6 +41,7 @@ let jobs = [
 
 common(jobs, "all");
 setCount(jobs);
+setHeader("all")
 
 function makePost (data) {
     return `
@@ -97,11 +64,14 @@ function makePost (data) {
 }
 
 document.getElementById("parent").addEventListener("click", function(e){
-    common(jobs, e.target.id)
+    if (e.target.type === "radio") {
+        common(jobs, e.target.id)
+    }
     e.stopPropagation;
 });
 
 function common (data, tabName) {
+    setHeader(tabName);
     document.getElementById(`accordion-${tabName}`).innerHTML = "";
         for (const job of data) {
 
@@ -132,65 +102,14 @@ function setCount (data) {
             reject++;
         }
     }
-    document.getElementById("card-interviewed-jobs").innerText = interview;
-    document.getElementById("card-rejected-jobs").innerText = reject;
-    document.getElementById("card-total-jobs").innerText = data.length;
-    document.getElementById("total-jobs").innerText = data.length;
-
+    document.getElementById("card-interview-jobs").innerText = interview;
+    document.getElementById("card-reject-jobs").innerText = reject;
+    document.getElementById("card-all-jobs").innerText = data.length;
     
 }
 
-// function getCount() {
-//     let rejectedJobs = 0;
-//     let interviewJobs = 0;
+function setHeader (tabName) {
+    document.getElementById("total-jobs").innerText = document.getElementById(`card-${tabName}-jobs`).innerText
+    document.getElementById("heading").innerText = tabName;
 
-//     for (const child of accordion.children) {
-//         if (child.classList.contains("interviewed")) {
-//             interviewJobs++;
-//         }
-//         if (child.classList.contains("rejected")) {
-//             rejectedJobs++;
-//         }
-
-//     }
-//     // document.getElementById("total-jobs").innerText = totalJobs;
-//     document.getElementById("card-rejected-jobs").innerText = rejectedJobs;
-
-//     // document.getElementById("total-jobs").innerText = totalJobs;
-//     document.getElementById("card-interviewed-jobs").innerText = interviewJobs;
-// }
-
-// document.getElementById("rejected-tab").addEventListener('click', function () {
-//     document.getElementById("heading").innerText = "Rejected";
-//     document.getElementById("total-jobs").innerText = document.getElementById("card-rejected-jobs").innerText;
-// });
-
-// document.getElementById("all-tab").addEventListener('click', function () {
-//     document.getElementById("heading").innerText = "Available";
-//     document.getElementById("total-jobs").innerText = document.getElementById("card-total-jobs").innerText;
-// });
-// document.getElementById("interviewed-tab").addEventListener('click', function () {
-//     document.getElementById("heading").innerText = "Interviewed";
-//     document.getElementById("total-jobs").innerText = document.getElementById("card-interviewed-jobs").innerText;
-// });
-
-// accordion.addEventListener("click", function () {
-//     console.log('ddssgd');
-    
-//     // document.getElementById("accordion-").
-//     for (const child of this.children) {
-//         if (child.classList.contains("interviewed")) {
-//             console.log(child);
-            
-//             document.getElementById("accordion-").appendChild(child)
-//             // document.getElementById("accordion-").innerHTML = `${child}`;
-
-//         }
-//         if (child.classList.contains("rejected")) {
-//             document.getElementById("accordion").appendChild(child)
-
-//         }
-
-//     }
-// });
-
+}
